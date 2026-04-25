@@ -11,8 +11,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -25,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import br.edu.ifsp.scl.sc3044025.soccerscore.ui.components.getWinner
 
 @Composable
 fun EditSoccerMatch(
@@ -39,6 +38,8 @@ fun EditSoccerMatch(
     var editedB by rememberSaveable { mutableStateOf(soccerTeamB) }
     var editedGoalsA by rememberSaveable { mutableStateOf(goalsTeamA) }
     var editedGoalsB by rememberSaveable { mutableStateOf(goalsTeamB) }
+
+    var result by rememberSaveable { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -106,7 +107,14 @@ fun EditSoccerMatch(
 
         Button(
             onClick = {
-                navHostController.popBackStack()
+                result = getWinner(
+                    soccerTeamA,
+                    soccerTeamB,
+                    goalsTeamA,
+                    goalsTeamB
+                )
+                navHostController.navigate("confirm_screen?resultMatch=$result")
+
             },
             shape = RoundedCornerShape(12.dp),
             colors = ButtonDefaults.buttonColors(

@@ -3,8 +3,8 @@ package br.edu.ifsp.scl.sc3044025.soccerscore.ui.components
 fun getWinner(
     teamA: String,
     teamB: String,
-    goalsA: String,
-    goalsB: String
+    goalsA: Int,
+    goalsB: Int
 ): String {
     return when {
         goalsA > goalsB -> teamA

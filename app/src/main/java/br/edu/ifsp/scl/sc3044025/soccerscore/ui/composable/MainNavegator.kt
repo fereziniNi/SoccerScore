@@ -56,5 +56,22 @@ fun MainNavegator(navHostController: NavHostController, modifier: Modifier){
                 goalsTeamB = backStackEntry.arguments?.getInt("goalsTeamB") ?: 0
             )
         }
+
+        composable(
+            route = Screen.Confirm.route +
+                    "?resultMatch={resultMatch}",
+            arguments = listOf(
+                navArgument("resultMatch") {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+
+            ResulSoccerMatch(
+                navHostController = navHostController,
+                modifier = Modifier,
+                resultMatch = backStackEntry.arguments?.getString("resultMatch") ?: ""
+            )
+        }
     }
 }
