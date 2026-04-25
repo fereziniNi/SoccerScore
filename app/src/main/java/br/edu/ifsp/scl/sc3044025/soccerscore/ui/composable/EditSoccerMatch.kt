@@ -81,17 +81,7 @@ fun EditSoccerMatch(
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Goals A: $editedGoalsA",
-            color = Color(0xFF81C784),
-            style = MaterialTheme.typography.headlineSmall.copy(
-                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
-            )
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        Text(
-            text = "Goals B: $editedGoalsB",
+            text = "$editedGoalsA X $editedGoalsB",
             color = Color(0xFF81C784),
             style = MaterialTheme.typography.headlineSmall.copy(
                 fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
