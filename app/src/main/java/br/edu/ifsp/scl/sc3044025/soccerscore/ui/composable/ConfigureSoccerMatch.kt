@@ -3,6 +3,7 @@ package br.edu.ifsp.scl.sc3044025.soccerscore.ui.composable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -28,50 +29,68 @@ fun ConfigureSoccerMatch(modifier: Modifier){
 
 
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp),
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.padding(48.dp))
 
         Text(
-            text = "Soccer Match"
+            text = "Soccer Match",
+            style = androidx.compose.material3.MaterialTheme.typography.headlineLarge
         )
 
         Spacer(modifier = Modifier.padding(8.dp))
         OutlinedTextField(
             value = soccerTeamA,
             onValueChange = { soccerTeamA = it },
-            label = { Text("Soccer team name A") }
+            label = { Text("Soccer team name A") },
+            singleLine = true,
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.padding(8.dp))
         OutlinedTextField(
             value = soccerTeamB,
             onValueChange = { soccerTeamB = it },
-            label = { Text("Soccer team name B") }
+            label = { Text("Soccer team name B") },
+            singleLine = true,
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.padding(20.dp))
         OutlinedTextField(
             value = goalsTeamA,
             onValueChange = { goalsTeamA = it },
-            label = { Text("Soccer team goals A") }
+            label = { Text("Soccer team goals A") },
+            singleLine = true,
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.padding(8.dp))
         OutlinedTextField(
             value = goalsTeamB,
             onValueChange = { goalsTeamB = it },
-            label = { Text("Soccer team goals B") }
+            label = { Text("Soccer team goals B") },
+            singleLine = true,
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+            modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.padding(12.dp))
         Button(
             onClick = {
                 // ação do botão
-            }
+            },
+            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
         ) {
-            Text("Save Match Result")
+            Text("Save Match Result",
+                style = androidx.compose.material3.MaterialTheme.typography.titleMedium)
+
         }
 
     }
