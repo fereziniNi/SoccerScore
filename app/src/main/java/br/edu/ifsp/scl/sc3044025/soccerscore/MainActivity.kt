@@ -40,6 +40,9 @@ fun ConfigureSoccerMatch(modifier: Modifier){
     var soccerTeamA by rememberSaveable { mutableStateOf("") }
     var soccerTeamB by rememberSaveable { mutableStateOf("") }
 
+    var goalsTeamA by rememberSaveable { mutableStateOf("") }
+    var goalsTeamB by rememberSaveable { mutableStateOf("") }
+
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -58,6 +61,18 @@ fun ConfigureSoccerMatch(modifier: Modifier){
         OutlinedTextField(
             value = soccerTeamB,
             onValueChange = { soccerTeamB = it },
+            label = { Text("Soccer team name B") }
+        )
+
+        OutlinedTextField(
+            value = goalsTeamA,
+            onValueChange = { goalsTeamA = it },
+            label = { Text("Soccer team name B") }
+        )
+
+        OutlinedTextField(
+            value = goalsTeamB,
+            onValueChange = { goalsTeamB = it },
             label = { Text("Soccer team name B") }
         )
 
