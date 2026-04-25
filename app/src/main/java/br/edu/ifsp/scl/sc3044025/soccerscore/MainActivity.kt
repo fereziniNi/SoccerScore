@@ -18,7 +18,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import br.edu.ifsp.scl.sc3044025.soccerscore.ui.composable.ConfigureSoccerMatch
+import br.edu.ifsp.scl.sc3044025.soccerscore.ui.composable.MainNavegator
 import br.edu.ifsp.scl.sc3044025.soccerscore.ui.theme.SoccerScoreTheme
 
 class MainActivity : ComponentActivity() {
@@ -27,8 +29,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SoccerScoreTheme {
+                val mainNavHostController = rememberNavController()
+
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ConfigureSoccerMatch(
+                    MainNavegator(
+                        navHostController = mainNavHostController,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
