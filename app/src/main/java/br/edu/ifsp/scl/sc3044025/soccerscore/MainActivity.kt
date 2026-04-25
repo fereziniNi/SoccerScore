@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -20,8 +21,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SoccerScoreTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    ConfigureSoccerMatch(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -31,19 +31,22 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun ConfigureSoccerMatch(modifier: Modifier){
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Soccer Match"
+        )
+    }
 }
-
 
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun ConfigureSoccerMatchPreview() {
     SoccerScoreTheme {
-        Greeting("Android")
+        ConfigureSoccerMatch(modifier = Modifier)
     }
 }
