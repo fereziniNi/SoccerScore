@@ -67,7 +67,7 @@ fun MainNavegator(navHostController: NavHostController, modifier: Modifier){
             )
         ) { backStackEntry ->
 
-            ResulSoccerMatch(
+            ResultSoccerMatch(
                 navHostController = navHostController,
                 modifier = Modifier,
                 resultMatch = backStackEntry.arguments?.getString("resultMatch") ?: ""
