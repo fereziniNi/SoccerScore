@@ -17,12 +17,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import br.edu.ifsp.scl.sc3044025.soccerscore.ui.components.isValidMatch
 import br.edu.ifsp.scl.sc3044025.soccerscore.ui.theme.SoccerScoreTheme
 
 
 @Composable
-fun ConfigureSoccerMatch(modifier: Modifier){
+fun ConfigureSoccerMatch(navHostController: NavHostController, modifier: Modifier){
     var soccerTeamA by rememberSaveable { mutableStateOf("") }
     var soccerTeamB by rememberSaveable { mutableStateOf("") }
 
@@ -97,12 +99,11 @@ fun ConfigureSoccerMatch(modifier: Modifier){
         Spacer(modifier = Modifier.padding(12.dp))
         Button(
             onClick = {
-                showError = !isValidMatch(
-                    soccerTeamA,
-                    soccerTeamB,
-                    goalsTeamA,
-                    goalsTeamB
-                )
+                if (isValidMatch(soccerTeamA, soccerTeamB, goalsTeamA, goalsTeamB)) {
+                    navHostController.navigate("edit_screen?soccerTeamA=$soccerTeamA&soccerTeamB=$soccerTeamB&goalsTeamA=$goalsTeamA&goalsTeamB=$goalsTeamB")
+                } else {
+                    showError = true
+                }
             },
             shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
         ) {
@@ -120,6 +121,9 @@ fun ConfigureSoccerMatch(modifier: Modifier){
 @Composable
 fun ConfigureSoccerMatchPreview() {
     SoccerScoreTheme {
-        ConfigureSoccerMatch(modifier = Modifier)
+        ConfigureSoccerMatch(
+            navHostController = rememberNavController(),
+            modifier = Modifier
+        )
     }
 }
