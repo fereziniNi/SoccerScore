@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
@@ -16,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.edu.ifsp.scl.sc3044025.soccerscore.ui.components.isValidMatch
 import br.edu.ifsp.scl.sc3044025.soccerscore.ui.theme.SoccerScoreTheme
 
 
@@ -27,6 +29,7 @@ fun ConfigureSoccerMatch(modifier: Modifier){
     var goalsTeamA by rememberSaveable { mutableStateOf("") }
     var goalsTeamB by rememberSaveable { mutableStateOf("") }
 
+    var showError by rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -81,10 +84,25 @@ fun ConfigureSoccerMatch(modifier: Modifier){
             modifier = Modifier.fillMaxWidth()
         )
 
+        if (showError) {
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Text(
+                text = "Please enter valid data!",
+                color = androidx.compose.ui.graphics.Color.Red,
+                style = androidx.compose.material3.MaterialTheme.typography.bodyMedium
+            )
+        }
+
         Spacer(modifier = Modifier.padding(12.dp))
         Button(
             onClick = {
-                // ação do botão
+                showError = !isValidMatch(
+                    soccerTeamA,
+                    soccerTeamB,
+                    goalsTeamA,
+                    goalsTeamB
+                )
             },
             shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp)
         ) {
